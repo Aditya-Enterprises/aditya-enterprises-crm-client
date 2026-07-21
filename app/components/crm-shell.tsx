@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Logo from "../assets/Logo.png";
 
 const authStorageKey = "aditya-crm-authenticated";
 
@@ -16,13 +18,30 @@ export const navigationItems = [
 
 const iconPaths: Record<string, string[]> = {
   add: ["M12 5v14", "M5 12h14"],
-  add_home: ["M3 21h18", "M5 21V9l7-6 7 6v12", "M9 21v-7h6v7", "M18 3v6", "M15 6h6"],
+  add_home: [
+    "M3 21h18",
+    "M5 21V9l7-6 7 6v12",
+    "M9 21v-7h6v7",
+    "M18 3v6",
+    "M15 6h6",
+  ],
   analytics: ["M3 3v18h18", "M7 16v-4", "M12 16V8", "M17 16v-6"],
   assignment: ["M9 5h6", "M9 12h6", "M9 17h4", "M7 3h10v3H7z", "M5 5h14v16H5z"],
   assignment_late: ["M7 3h10v3H7z", "M5 5h14v16H5z", "M12 9v4", "M12 17h.01"],
   bolt: ["M13 2L3 14h8l-1 8 10-12h-8z"],
-  bathtub: ["M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z", "M6 12V6a3 3 0 0 1 6 0", "M4 20l-1 2", "M20 20l1 2"],
-  bed: ["M3 11V5", "M21 13v8", "M3 21v-8h18", "M7 11h14", "M7 11V8a2 2 0 0 0-2-2H3"],
+  bathtub: [
+    "M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z",
+    "M6 12V6a3 3 0 0 1 6 0",
+    "M4 20l-1 2",
+    "M20 20l1 2",
+  ],
+  bed: [
+    "M3 11V5",
+    "M21 13v8",
+    "M3 21v-8h18",
+    "M7 11h14",
+    "M7 11V8a2 2 0 0 0-2-2H3",
+  ],
   calendar_month: [
     "M8 2v4",
     "M16 2v4",
@@ -86,8 +105,18 @@ const iconPaths: Record<string, string[]> = {
     "M12 17h.01",
   ],
   check_circle: ["M22 11.1V12a10 10 0 1 1-5.9-9.1", "M22 4L12 14.01l-3-3"],
-  list: ["M8 6h13", "M8 12h13", "M8 18h13", "M3 6h.01", "M3 12h.01", "M3 18h.01"],
-  location_on: ["M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z", "M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"],
+  list: [
+    "M8 6h13",
+    "M8 12h13",
+    "M8 18h13",
+    "M3 6h.01",
+    "M3 12h.01",
+    "M3 18h.01",
+  ],
+  location_on: [
+    "M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z",
+    "M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+  ],
   lock: ["M6 10V8a6 6 0 0 1 12 0v2", "M5 10h14v11H5z", "M12 15v2"],
   logout: [
     "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4",
@@ -103,7 +132,11 @@ const iconPaths: Record<string, string[]> = {
   ],
   more_horiz: ["M5 12h.01", "M12 12h.01", "M19 12h.01"],
   more_vert: ["M12 5h.01", "M12 12h.01", "M12 19h.01"],
-  outdoor_garden: ["M12 21V11", "M12 11c-5 0-7-3-7-7 4 0 7 2 7 7z", "M12 11c5 0 7-3 7-7-4 0-7 2-7 7z"],
+  outdoor_garden: [
+    "M12 21V11",
+    "M12 11c-5 0-7-3-7-7 4 0 7 2 7 7z",
+    "M12 11c5 0 7-3 7-7-4 0-7 2-7 7z",
+  ],
   notifications: [
     "M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8",
     "M13.7 21a2 2 0 0 1-3.4 0",
@@ -130,9 +163,24 @@ const iconPaths: Record<string, string[]> = {
     "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
     "M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1A2 2 0 1 1 7.1 4l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 20 7.1l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.6 1h.1a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.8 1z",
   ],
-  square_foot: ["M4 20h16", "M4 20V4", "M8 20v-4", "M12 20v-4", "M16 20v-4", "M4 16h4", "M4 12h4", "M4 8h4"],
+  square_foot: [
+    "M4 20h16",
+    "M4 20V4",
+    "M8 20v-4",
+    "M12 20v-4",
+    "M16 20v-4",
+    "M4 16h4",
+    "M4 12h4",
+    "M4 8h4",
+  ],
   trending_up: ["M3 17l6-6 4 4 8-8", "M14 7h7v7"],
-  view_kanban: ["M3 5h18v14H3z", "M8 5v14", "M16 5v14", "M5.5 9h5", "M13.5 13h5"],
+  view_kanban: [
+    "M3 5h18v14H3z",
+    "M8 5v14",
+    "M16 5v14",
+    "M5.5 9h5",
+    "M13.5 13h5",
+  ],
 };
 
 function iconSizeClass(className: string) {
@@ -144,7 +192,13 @@ function iconSizeClass(className: string) {
   return "h-6 w-6";
 }
 
-export function Icon({ name, className = "" }: { name: string; className?: string }) {
+export function Icon({
+  name,
+  className = "",
+}: {
+  name: string;
+  className?: string;
+}) {
   const paths = iconPaths[name] ?? iconPaths.help;
 
   return (
@@ -165,16 +219,26 @@ export function Icon({ name, className = "" }: { name: string; className?: strin
   );
 }
 
-function Sidebar({ activePath, onLogout }: { activePath: string; onLogout: () => void }) {
+function Sidebar({
+  activePath,
+  onLogout,
+}: {
+  activePath: string;
+  onLogout: () => void;
+}) {
   return (
-    <aside className="sidebar-shadow fixed left-0 top-0 z-50 hidden h-screen w-[260px] flex-col space-y-2 bg-slate-900 px-4 py-6 lg:flex">
+    <aside className="sidebar-shadow fixed left-0 top-0 z-50 hidden h-screen w-65 flex-col space-y-2 bg-slate-900 px-4 py-6 lg:flex">
       <div className="mb-8 flex items-center gap-3 px-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-500">
-          <Icon name="domain" className="text-white" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
+          <Image src={Logo} alt="logo" />
         </div>
         <div>
-          <h1 className="text-lg font-black leading-none text-white">ADITYA ENTERPRISES</h1>
-          <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-400">Real Estate CRM</p>
+          <h1 className="text-lg font-black leading-none text-white">
+            ADITYA ENTERPRISES
+          </h1>
+          <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-slate-400">
+            Real Estate CRM
+          </p>
         </div>
       </div>
 
@@ -200,7 +264,10 @@ function Sidebar({ activePath, onLogout }: { activePath: string; onLogout: () =>
       </nav>
 
       <div className="space-y-1 border-t border-slate-800 pt-6">
-        <a className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm tracking-wide text-slate-400 transition-all duration-200 hover:bg-slate-800 hover:text-white" href="#">
+        <a
+          className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm tracking-wide text-slate-400 transition-all duration-200 hover:bg-slate-800 hover:text-white"
+          href="#"
+        >
           <Icon name="help" />
           <span>Help Center</span>
         </a>
@@ -225,14 +292,21 @@ function Header() {
           <Icon name="domain" />
         </div>
         <div>
-          <p className="text-sm font-black leading-none text-slate-900">ADITYA ENTERPRISES</p>
-          <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-slate-500">CRM</p>
+          <p className="text-sm font-black leading-none text-slate-900">
+            ADITYA ENTERPRISES
+          </p>
+          <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-slate-500">
+            CRM
+          </p>
         </div>
       </div>
 
       <div className="hidden max-w-xl flex-1 items-center md:flex">
         <div className="relative w-full">
-          <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-lg text-slate-400" />
+          <Icon
+            name="search"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-lg text-slate-400"
+          />
           <input
             className="w-full rounded-full border-none bg-[#f5f2fa] py-2 pl-10 pr-4 text-sm text-slate-700 outline-none transition-all focus:ring-2 focus:ring-sky-200"
             placeholder="Search leads, properties, or deals..."
@@ -242,22 +316,37 @@ function Header() {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
-        <button aria-label="Search" className="rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50 md:hidden">
+        <button
+          aria-label="Search"
+          className="rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50 md:hidden"
+        >
           <Icon name="search" />
         </button>
-        <button aria-label="Notifications" className="relative rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50">
+        <button
+          aria-label="Notifications"
+          className="relative rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50"
+        >
           <Icon name="notifications" />
           <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-600" />
         </button>
-        <button aria-label="Settings" className="hidden rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50 sm:block">
+        <button
+          aria-label="Settings"
+          className="hidden rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50 sm:block"
+        >
           <Icon name="settings" />
         </button>
         <div className="hidden h-8 w-px bg-sky-100 sm:block" />
         <div className="flex cursor-pointer items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-sky-100 text-xs font-bold text-sky-800 shadow-sm">MS</div>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-sky-100 text-xs font-bold text-sky-800 shadow-sm">
+            MS
+          </div>
           <div className="hidden text-right lg:block">
-            <p className="text-sm font-semibold leading-tight text-slate-900">Marcus Sterling</p>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Senior Agent</p>
+            <p className="text-sm font-semibold leading-tight text-slate-900">
+              Marcus Sterling
+            </p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+              Senior Agent
+            </p>
           </div>
         </div>
       </div>
@@ -330,7 +419,10 @@ export function CrmShell({
           aria-label="Create new item"
           className="fixed bottom-24 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#0077b6] text-white shadow-xl shadow-sky-700/30 transition-transform hover:scale-110 hover:bg-[#48cae4] active:scale-95 lg:bottom-6 lg:right-6"
         >
-          <Icon name="add" className="text-2xl transition-transform duration-300" />
+          <Icon
+            name="add"
+            className="text-2xl transition-transform duration-300"
+          />
         </button>
       ) : null}
       <MobileNav activePath={activePath} />

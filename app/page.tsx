@@ -2,7 +2,9 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Icon } from "./components/crm-shell";
+import Logo from "./assets/Logo.png";
 
 const authStorageKey = "aditya-crm-authenticated";
 
@@ -34,8 +36,8 @@ export default function LoginPage() {
     <main className="login-gradient relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-8 text-slate-900">
       <section className="card-shadow z-10 flex w-full max-w-110 flex-col gap-6 rounded-xl border border-[#90e0ef] bg-white p-6 sm:p-10">
         <div className="flex flex-col items-center gap-2 text-center">
-          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-slate-900 text-white">
-            <Icon name="domain" className="text-2xl" />
+          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg   text-white">
+            <Image src={Logo} alt="Logo" />
           </div>
           <h1 className="text-2xl font-semibold leading-tight text-slate-900">
             Aditya Enterprises CRM
