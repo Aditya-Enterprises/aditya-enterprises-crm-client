@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbf8ff;
+  --foreground: #1b1b20;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fbf8ff;
+    --foreground: #1b1b20;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar-shadow {
+  box-shadow: 10px 0 30px rgba(3, 4, 94, 0.08);
+}
+
+.card-elevation {
+  box-shadow: 0 4px 20px rgba(3, 4, 94, 0.08);
+}
+
+.login-gradient {
+  background:
+    radial-gradient(circle at top left, #caf0f8 0%, #fbf8ff 40%, #ffffff 100%);
+}
+
+.card-shadow {
+  box-shadow: 0 10px 40px -10px rgba(3, 4, 94, 0.08);
+}
