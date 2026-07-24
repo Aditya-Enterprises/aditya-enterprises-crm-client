@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Icon } from "./components/crm-shell";
+import Icon from "./components/Icon";
 import Logo from "./assets/Logo.png";
 
 const authStorageKey = "aditya-crm-authenticated";
@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (window.localStorage.getItem(authStorageKey) === "true") {
-      router.replace("/dashboard");
+      router.replace("/crm/dashboard");
     }
   }, [router]);
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
     }
     if (email == "admin@aditya.in" && password == "Aditya") {
       window.localStorage.setItem(authStorageKey, "true");
-      router.push("/dashboard");
+      router.push("/crm/dashboard");
     } else {
     }
   }
