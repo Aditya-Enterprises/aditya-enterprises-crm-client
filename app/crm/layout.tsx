@@ -1,10 +1,18 @@
+"use client";
+
 import React from "react";
+import { CrmShell } from "../components/crm-shell";
+import { usePathname } from "next/navigation";
 
 function layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="border-4 border-amber-400">{children}</div>;
+  const pathname = usePathname();
+  console.log(pathname);
+  return (
+    <CrmShell activePath={pathname ?? "/crm/dashboard"}>{children}</CrmShell>
+  );
 }
 export default layout;
