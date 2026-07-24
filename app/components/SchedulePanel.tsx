@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { ScheduleItem } from "./data";
+import { ScheduleItem } from "@/app/utils/types";
 
 export function SchedulePanel({ schedule }: { schedule: ScheduleItem[] }) {
   return (

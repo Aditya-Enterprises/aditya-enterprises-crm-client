@@ -1,9 +1,9 @@
 import Icon from "@/app/components/Icon";
 import { CrmShell } from "../../components/crm-shell";
-import { leadsFilters, leadsData, leadsInsights } from "./data";
-import { FilterPanel } from "./FilterPanel";
-import { LeadsTable } from "./LeadsTable";
-import { InsightCards } from "./InsightCards";
+import { leadsFilters, leadsData, leadsInsights } from "../../data/data";
+import { FilterPanel } from "../../components/FilterPanel";
+import { LeadsTable } from "../../components/LeadsTable";
+import { InsightCards } from "../../components/InsightCards";
 
 export default function LeadsPage() {
   return (

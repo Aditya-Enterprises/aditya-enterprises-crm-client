@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { Insight } from "./data";
+import { Insight } from "@/app/utils/types";
 
 export function InsightCards({ insights }: { insights: Insight[] }) {
   return (

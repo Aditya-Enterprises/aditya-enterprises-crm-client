@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { Task } from "./data";
+import { Task } from "@/app/utils/types";
 import { StatusBadge, PriorityBadge } from "./TaskBadges";
 
 export function TaskCard({ task }: { task: Task }) {

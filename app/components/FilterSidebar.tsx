@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { propertyTypes, amenities } from "./data";
+import { propertyTypes, amenities } from "../data/data";
 
 export function FilterSidebar() {
   return (

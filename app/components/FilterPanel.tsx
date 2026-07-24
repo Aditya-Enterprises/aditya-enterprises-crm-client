@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { FilterOption } from "./data";
+import { FilterOption } from "@/app/utils/types";
 
 export function FilterPanel({ filters }: { filters: FilterOption[] }) {
   return (

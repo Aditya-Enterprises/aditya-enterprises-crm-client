@@ -1,7 +1,13 @@
 import Icon from "@/app/components/Icon";
-import { Deal } from "./data";
+import { Deal } from "@/app/utils/types";
 
-export function DealCard({ deal, closed = false }: { deal: Deal; closed?: boolean }) {
+export function DealCard({
+  deal,
+  closed = false,
+}: {
+  deal: Deal;
+  closed?: boolean;
+}) {
   return (
     <article
       className={`rounded-xl border border-[#90e0ef] p-4 transition-all ${

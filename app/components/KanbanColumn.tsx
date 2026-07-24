@@ -1,4 +1,5 @@
-import { DealColumn } from "./data";
+import { DealColumn } from "@/app/utils/types";
+
 import { DealCard } from "./DealCard";
 
 export function KanbanColumn({ column }: { column: DealColumn }) {

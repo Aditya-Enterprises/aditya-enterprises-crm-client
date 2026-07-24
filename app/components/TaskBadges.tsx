@@ -1,4 +1,4 @@
-import { TaskStatus, TaskPriority } from "./data";
+import { TaskStatus, TaskPriority } from "@/app/utils/types";
 
 export function StatusBadge({ status }: { status: TaskStatus }) {
   const classes: Record<TaskStatus, string> = {

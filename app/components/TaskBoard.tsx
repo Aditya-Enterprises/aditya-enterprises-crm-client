@@ -1,5 +1,6 @@
 import Icon from "@/app/components/Icon";
-import { Task, filters } from "./data";
+import { Task } from "@/app/utils/types";
+import { filters } from "@/app/data/data";
 import { TaskCard } from "./TaskCard";
 
 export function TaskBoard({ tasks }: { tasks: Task[] }) {

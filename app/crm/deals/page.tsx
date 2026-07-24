@@ -1,8 +1,8 @@
 import Icon from "@/app/components/Icon";
 import { CrmShell } from "../../components/crm-shell";
-import { dealsColumns } from "./data";
-import { ViewToggle } from "./ViewToggle";
-import { KanbanColumn } from "./KanbanColumn";
+import { dealsColumns } from "@/app/data/data";
+import { ViewToggle } from "../../components/ViewToggle";
+import { KanbanColumn } from "../../components/KanbanColumn";
 
 export default function DealsPage() {
   return (

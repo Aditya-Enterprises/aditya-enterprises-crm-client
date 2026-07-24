@@ -1,8 +1,8 @@
 import Icon from "@/app/components/Icon";
 import { CrmShell } from "../../components/crm-shell";
-import { propertyTabs, properties } from "./data";
-import { PropertyCard } from "./PropertyCard";
-import { FilterSidebar } from "./FilterSidebar";
+import { propertyTabs, properties } from "@/app/data/data";
+import { PropertyCard } from "../../components/PropertyCard";
+import { FilterSidebar } from "../../components/FilterSidebar";
 
 export default function PropertiesPage() {
   return (

@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { Lead } from "./data";
+import { Lead } from "@/app/utils/types";
 
 export function LeadsTable({ leads }: { leads: Lead[] }) {
   return (

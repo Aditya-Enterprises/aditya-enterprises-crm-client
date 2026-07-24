@@ -1,9 +1,9 @@
 import Icon from "@/app/components/Icon";
 import { CrmShell } from "../../components/crm-shell";
-import { summaryCards, tasks, schedule } from "./data";
-import { SummaryCardComponent } from "./SummaryCard";
-import { TaskBoard } from "./TaskBoard";
-import { SchedulePanel } from "./SchedulePanel";
+import { summaryCards, tasks, schedule } from "@/app/data/data";
+import { SummaryCardComponent } from "../../components/SummaryCard";
+import { TaskBoard } from "../../components/TaskBoard";
+import { SchedulePanel } from "../../components/SchedulePanel";
 
 export default function TasksPage() {
   return (
