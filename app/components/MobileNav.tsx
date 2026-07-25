@@ -4,8 +4,8 @@ import Link from "next/link";
 
 function MobileNav({ activePath }: { activePath: string }) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 grid grid-cols-4 border-t border-sky-100 bg-slate-900 px-2 py-2 shadow-2xl lg:hidden">
-      {navigationItems.slice(0, 4).map((item) => {
+    <nav className="fixed bottom-0 left-0 right-0 z-50 grid grid-cols-5 border-t border-sky-100 bg-slate-900 px-2 py-2 shadow-2xl lg:hidden">
+      {navigationItems.slice(0, 5).map((item) => {
         const active = activePath === item.href;
 
         return (

@@ -1,12 +1,11 @@
 import Icon from "@/app/components/Icon";
-import { CrmShell } from "../../components/crm-shell";
 import { propertyTabs, properties } from "@/app/data/data";
 import { PropertyCard } from "../../components/PropertyCard";
 import { FilterSidebar } from "../../components/FilterSidebar";
 
 export default function PropertiesPage() {
   return (
-    <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-6 px-4 py-6 pb-28 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
+    <div className="mx-auto grid max-w-360 grid-cols-1 gap-6 px-4 py-6 pb-28 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
       <div className="min-w-0">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (window.localStorage.getItem(authStorageKey) === "true") {
-      router.replace("/crm/dashboard");
+      router.replace("/dashboard");
     }
   }, [router]);
 
@@ -27,7 +27,7 @@ export default function LoginPage() {
     }
     if (email == "admin@aditya.in" && password == "Aditya") {
       window.localStorage.setItem(authStorageKey, "true");
-      router.push("/crm/dashboard");
+      router.push("/dashboard");
     } else {
     }
   }
@@ -118,7 +118,7 @@ export default function LoginPage() {
         </div>
       </section>
 
-      <footer className="absolute bottom-6 z-10 flex flex-col items-center gap-3 text-center">
+      <footer className="absolute bottom-5 z-10 flex flex-col items-center gap-3 text-center">
         <div className="flex flex-wrap justify-center gap-4">
           {["Privacy Policy", "Terms of Service", "Support"].map((item) => (
             <a

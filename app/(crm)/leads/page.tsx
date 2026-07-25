@@ -1,5 +1,4 @@
 import Icon from "@/app/components/Icon";
-import { CrmShell } from "../../components/crm-shell";
 import { leadsFilters, leadsData, leadsInsights } from "../../data/data";
 import { FilterPanel } from "../../components/FilterPanel";
 import { LeadsTable } from "../../components/LeadsTable";
@@ -7,7 +6,7 @@ import { InsightCards } from "../../components/InsightCards";
 
 export default function LeadsPage() {
   return (
-    <div className="mx-auto max-w-[1440px] px-4 py-6 pb-28 sm:px-6 lg:p-8">
+    <div className="mx-auto max-w-360 px-4 py-6 pb-28 sm:px-6 lg:p-8">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-3xl font-bold leading-tight text-slate-900">

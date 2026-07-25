@@ -38,15 +38,15 @@ export function CrmShell({
     router.replace("/");
   }
 
-  if (!authChecked) {
-    return <div className="min-h-screen bg-[#fbf8ff]" />;
-  }
+  // if (!authChecked) {
+  //   return <div className="min-h-screen bg-[#fbf8ff]" />;
+  // }
 
   return (
     <div className="min-h-screen bg-[#fbf8ff] text-slate-900">
       <Sidebar activePath={activePath} onLogout={handleLogout} />
       <Header />
-      <main className="min-h-screen pt-16 lg:ml-65">{children}</main>
+      <main className="min-h-screen min-w-0 pt-16 lg:ml-[260px]">{children}</main>
       {showFab ? (
         <button
           aria-label="Create new item"

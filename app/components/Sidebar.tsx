@@ -14,8 +14,8 @@ function Sidebar({
   return (
     <aside className="sidebar-shadow fixed left-0 top-0 z-50 hidden h-screen w-65 flex-col space-y-2 bg-slate-900 px-4 py-6 lg:flex">
       <div className="mb-8 flex items-center gap-3 px-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
-          <Image src={Logo} alt="logo" />
+        <div className="flex h-10 items-center justify-center rounded-lg bg-white">
+          <Image src={Logo} alt="logo" className="p-2" />
         </div>
         <div>
           <h1 className="text-lg font-black leading-none text-white">

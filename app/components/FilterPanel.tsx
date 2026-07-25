@@ -3,7 +3,7 @@ import { FilterOption } from "@/app/utils/types";
 
 export function FilterPanel({ filters }: { filters: FilterOption[] }) {
   return (
-    <section className="mb-8 grid grid-cols-1 gap-4 rounded-xl border border-[#90e0ef] bg-white p-5 shadow-sm md:grid-cols-4">
+    <section className="mb-8 grid grid-cols-1 gap-4 rounded-xl border border-[#90e0ef] bg-white p-5 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
       {filters.map((filter) => (
         <label className="space-y-2" key={filter.label}>
           <span className="block text-xs font-bold uppercase tracking-[0.05em] text-slate-500">

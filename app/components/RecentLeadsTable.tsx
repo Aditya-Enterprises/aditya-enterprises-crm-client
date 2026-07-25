@@ -96,6 +96,37 @@ export default function RecentLeadsTable() {
           </tbody>
         </table>
       </div>
+      <div className="divide-y divide-sky-50 md:hidden">
+        {recentLeads.map((lead) => (
+          <article className="p-4 sm:p-5" key={lead.name}>
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-3">
+                <div
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold ${lead.avatarClass}`}
+                >
+                  {lead.initials}
+                </div>
+                <div className="min-w-0">
+                  <h3 className="truncate text-sm font-semibold text-slate-900">
+                    {lead.name}
+                  </h3>
+                  <p className="truncate text-xs text-slate-500">{lead.intent}</p>
+                </div>
+              </div>
+              <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${lead.statusClass}`}>
+                {lead.status}
+              </span>
+            </div>
+            <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
+              <span>{lead.source}</span>
+              <span>{lead.date}</span>
+              <button className="ml-auto text-[#0077b6]" aria-label={`Open actions for ${lead.name}`}>
+                <Icon name="more_horiz" className="text-xl" />
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "./Icon";
-import { tasks } from "../data/data";
+import { Dashboardtasks } from "../data/data";
 function TasksWidget() {
   return (
     <section className="card-elevation flex flex-col rounded-xl border border-sky-100 bg-white">
@@ -11,7 +11,7 @@ function TasksWidget() {
         <p className="text-sm text-slate-500">Priority focus for May 20</p>
       </div>
       <div className="flex-1 space-y-4 p-5 sm:p-6">
-        {tasks.map((task) => (
+        {Dashboardtasks.map((task) => (
           <article
             className={`flex items-start gap-3 rounded-lg border-l-4 p-3 transition-colors ${
               task.active

@@ -1,5 +1,4 @@
 import Icon from "@/app/components/Icon";
-import { CrmShell } from "../../components/crm-shell";
 import { dealsColumns } from "@/app/data/data";
 import { ViewToggle } from "../../components/ViewToggle";
 import { KanbanColumn } from "../../components/KanbanColumn";
@@ -30,11 +29,11 @@ export default function DealsPage() {
       </div>
 
       <div className="flex-1 overflow-x-auto bg-[#fbf8ff] px-4 py-6 pb-28 sm:px-6 lg:px-8">
-        <div className="flex min-h-[640px] w-max gap-6">
+        <div className="flex min-h-160 w-max gap-6">
           {dealsColumns.map((column) => (
             <KanbanColumn column={column} key={column.title} />
           ))}
-          <button className="flex min-w-[300px] max-w-[300px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sky-100 text-sky-600 transition-colors hover:bg-sky-50 sm:min-w-[320px] sm:max-w-[320px]">
+          <button className="flex min-w-75 max-w-75 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sky-100 text-sky-600 transition-colors hover:bg-sky-50 sm:min-w-[320px] sm:max-w-[320px]">
             <span className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-white text-sky-400 shadow-sm">
               <Icon name="add" className="text-2xl" />
             </span>

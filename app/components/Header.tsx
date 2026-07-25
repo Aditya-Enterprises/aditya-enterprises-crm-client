@@ -1,17 +1,19 @@
 import Icon from "./Icon";
+import Logo from "../assets/Logo.png";
+import Image from "next/image";
 
 function Header() {
   return (
-    <header className="fixed right-0 top-0 z-40 flex h-16 w-full items-center justify-between border-b border-sky-100 bg-white/85 px-4 shadow-sm backdrop-blur-md lg:w-[calc(100%-260px)] lg:px-6">
+    <header className="fixed right-0 top-0 z-40 flex h-16 w-full min-w-0 items-center justify-between border-b border-sky-100 bg-white/85 px-4 shadow-sm backdrop-blur-md lg:w-[calc(100%-260px)] lg:px-6">
       <div className="flex items-center gap-3 lg:hidden">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-white">
-          <Icon name="domain" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-white">
+          <Image src={Logo} className="" alt="Logo" />
         </div>
         <div>
           <p className="text-sm font-black leading-none text-slate-900">
             ADITYA ENTERPRISES
           </p>
-          <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-slate-500">
+          <p className="mt-1 text-[9px] uppercase tracking-wide text-slate-500">
             CRM
           </p>
         </div>
@@ -31,7 +33,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-4">
+      <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-4">
         <button
           aria-label="Search"
           className="rounded-full p-2 text-slate-500 transition-colors hover:bg-sky-50 md:hidden"

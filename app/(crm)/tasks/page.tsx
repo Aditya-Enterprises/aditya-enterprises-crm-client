@@ -1,5 +1,4 @@
 import Icon from "@/app/components/Icon";
-import { CrmShell } from "../../components/crm-shell";
 import { summaryCards, tasks, schedule } from "@/app/data/data";
 import { SummaryCardComponent } from "../../components/SummaryCard";
 import { TaskBoard } from "../../components/TaskBoard";

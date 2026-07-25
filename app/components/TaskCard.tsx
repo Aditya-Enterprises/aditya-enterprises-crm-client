@@ -11,7 +11,7 @@ export function TaskCard({ task }: { task: Task }) {
         highlighted ? "border-[#90e0ef]" : "border-sky-100"
       }`}
     >
-      <div className="flex items-start gap-3">
+      <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3">
         <div
           className={`mt-0.5 flex h-10 w-10 items-center justify-center rounded-xl ${highlighted ? "bg-sky-50 text-[#0077b6]" : "bg-slate-50 text-slate-400"}`}
         >
