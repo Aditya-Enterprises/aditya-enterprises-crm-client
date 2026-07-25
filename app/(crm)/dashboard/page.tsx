@@ -1,4 +1,7 @@
+"use client";
+
 import { CrmShell } from "../../components/crm-shell";
+import { useState } from "react";
 import RecentLeadsTable from "../../components/RecentLeadsTable";
 import MetricCard from "../../components/MetricCard";
 import SalesChart from "../../components/SalesChart";
@@ -7,6 +10,7 @@ import { metrics } from "../../data/data";
 import Icon from "@/app/components/Icon";
 
 export default function Home() {
+  const [value, setValue] = useState(metrics[3].value);
   return (
     <div className="mx-auto max-w-360 px-4 py-6 pb-28 sm:px-6 lg:p-6">
       <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -20,9 +24,12 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <button className="flex items-center gap-2 rounded-lg border border-[#90e0ef] bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-sky-50">
+          <button
+            className="flex items-center gap-2 rounded-lg border border-[#90e0ef] bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-sky-50"
+            onClick={() => setValue(Number(value) + 1)}
+          >
             <Icon name="calendar_month" className="text-lg" />
-            <span>This Month</span>
+            <span>Add Task</span>
           </button>
           <button className="flex items-center gap-2 rounded-lg bg-[#0077b6] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-700/20 transition-all hover:bg-[#48cae4] active:scale-95">
             <Icon name="add" className="text-lg" />
@@ -33,7 +40,7 @@ export default function Home() {
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {metrics.map((metric) => (
-          <MetricCard key={metric.label} metric={metric} />
+          <MetricCard key={metric.label} metric={metric} value={value} />
         ))}
       </div>
 

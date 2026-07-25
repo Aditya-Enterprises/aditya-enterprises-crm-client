@@ -2,7 +2,6 @@ import { FilterOption, Lead, Insight } from "../utils/types";
 import { Property, PropertyTab, Amenity } from "../utils/types";
 import { DealColumn } from "../utils/types";
 import { ScheduleItem, Task, SummaryCard } from "../utils/types";
-
 export const metrics = [
   {
     label: "TOTAL LEADS",
@@ -14,7 +13,7 @@ export const metrics = [
   },
   {
     label: "ACTIVE DEALS",
-    value: "42",
+    value: "45",
     icon: "handshake",
     badge: "Active",
     badgeClass: "bg-blue-50 text-blue-600",
@@ -30,7 +29,7 @@ export const metrics = [
   },
   {
     label: "PENDING TASKS",
-    value: "08",
+    value: 0,
     icon: "assignment_late",
     badge: "Due Today",
     badgeClass: "bg-amber-50 text-amber-600",

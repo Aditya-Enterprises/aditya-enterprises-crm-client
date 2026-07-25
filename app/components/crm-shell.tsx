@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
-import { navigationItems } from "../data/NavigationItems";
 import Icon from "./Icon";
 
 const authStorageKey = "aditya-crm-authenticated";
@@ -46,7 +45,7 @@ export function CrmShell({
     <div className="min-h-screen bg-[#fbf8ff] text-slate-900">
       <Sidebar activePath={activePath} onLogout={handleLogout} />
       <Header />
-      <main className="min-h-screen min-w-0 pt-16 lg:ml-[260px]">{children}</main>
+      <main className="min-h-screen min-w-0 pt-16 lg:ml-65">{children}</main>
       {showFab ? (
         <button
           aria-label="Create new item"

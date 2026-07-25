@@ -10,7 +10,6 @@ function layout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <CrmShell activePath={pathname ?? "/crm/dashboard"}>{children}</CrmShell>
   );
