@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { Property } from "./data";
+import { Property } from "../utils/types";
 import { StatusBadge } from "./StatusBadge";
 
 export function PropertyCard({ property }: { property: Property }) {

@@ -4,7 +4,7 @@ import React from "react";
 import { CrmShell } from "../components/crm-shell";
 import { usePathname } from "next/navigation";
 
-function layout({
+function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -14,4 +14,4 @@ function layout({
     <CrmShell activePath={pathname ?? "/crm/dashboard"}>{children}</CrmShell>
   );
 }
-export default layout;
+export default Layout;

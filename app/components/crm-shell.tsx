@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import Icon from "./Icon";
+import { clearAccessToken } from "../utils/api";
 
 const authStorageKey = "aditya-crm-authenticated";
 
@@ -34,6 +35,7 @@ export function CrmShell({
 
   function handleLogout() {
     window.localStorage.removeItem(authStorageKey);
+    clearAccessToken();
     router.replace("/");
   }
 

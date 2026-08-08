@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Icon from "./components/Icon";
 import Logo from "./assets/Logo.png";
+import { login } from "./utils/api-client";
 
 const authStorageKey = "aditya-crm-authenticated";
 
@@ -12,6 +13,8 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (window.localStorage.getItem(authStorageKey) === "true") {
@@ -19,16 +22,24 @@ export default function LoginPage() {
     }
   }, [router]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setError("");
 
     if (!email.trim() || !password) {
       return;
     }
-    if (email == "admin@aditya.in" && password == "Aditya") {
+
+    setIsLoading(true);
+
+    try {
+      await login(email, password);
       window.localStorage.setItem(authStorageKey, "true");
       router.push("/dashboard");
-    } else {
+    } catch {
+      setError("Unable to sign in. Check your email and password.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -99,10 +110,12 @@ export default function LoginPage() {
           <button
             className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 py-4 text-lg font-semibold text-white shadow-md transition-all hover:bg-[#0077b6] active:scale-[0.98]"
             type="submit"
+            disabled={isLoading}
           >
-            <span>Sign In</span>
+            <span>{isLoading ? "Signing In..." : "Sign In"}</span>
             <Icon name="chevron_right" className="text-lg" />
           </button>
+          {error ? <p className="text-center text-sm text-red-600">{error}</p> : null}
         </form>
 
         <div className="border-t border-slate-100 pt-4 text-center">

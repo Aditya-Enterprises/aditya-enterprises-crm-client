@@ -1,4 +1,4 @@
-import { Property } from "./data";
+import { Property } from "../utils/types";
 
 export function StatusBadge({ status }: { status: Property["status"] }) {
   const classes = {
