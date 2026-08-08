@@ -15,6 +15,15 @@ export type LoginResponse = {
   roles: string[];
 };
 
+export type RegisterAgentRequest = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  phone?: string;
+};
+
 export type EmployeeRole = "Agent" | "Manager" | "Administrator";
 
 export type ApiEmployee = {

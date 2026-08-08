@@ -123,7 +123,7 @@ export default function LoginPage() {
             Don&apos;t have an account?{" "}
             <a
               className="font-semibold text-[#006399] hover:underline"
-              href="#"
+                href="#"
             >
               Contact your admin
             </a>
@@ -136,7 +136,7 @@ export default function LoginPage() {
           {["Privacy Policy", "Terms of Service", "Support"].map((item) => (
             <a
               className="text-xs font-bold uppercase tracking-wider text-slate-500 transition-colors hover:text-slate-900"
-              href="#"
+              href="/register"
               key={item}
             >
               {item}

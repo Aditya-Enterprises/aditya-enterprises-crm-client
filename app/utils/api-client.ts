@@ -10,6 +10,7 @@ import type {
   DashboardPipelineItem,
   DashboardSummary,
   LoginResponse,
+  RegisterAgentRequest,
 } from "./api-types";
 
 export async function login(email: string, password: string) {
@@ -20,6 +21,16 @@ export async function login(email: string, password: string) {
 
   setAccessToken(result.accessToken);
   return result;
+}
+
+export async function registerAgent(request: RegisterAgentRequest) {
+  return apiFetch<{ userId: string; employeeId: string; email: string; role: string }>(
+    "/auth/register",
+    {
+      method: "POST",
+      body: JSON.stringify(request),
+    },
+  );
 }
 
 export const getEmployees = (page = 1, pageSize = 20) =>
