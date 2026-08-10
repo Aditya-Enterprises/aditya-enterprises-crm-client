@@ -1,8 +1,62 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Icon from "./Icon";
 import Logo from "../assets/Logo.png";
 import Image from "next/image";
+import { currentUserStorageKey } from "../utils/api";
+
+type CurrentUser = {
+  name: string;
+  role: string;
+};
+
+const defaultUser: CurrentUser = { name: "User", role: "Agent" };
+
+function getInitials(name: string) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map((part) => part[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+function readCurrentUser(): CurrentUser {
+  if (typeof window === "undefined") {
+    return defaultUser;
+  }
+
+  const storedUser = window.localStorage.getItem(currentUserStorageKey);
+
+  if (!storedUser) {
+    return defaultUser;
+  }
+
+  try {
+    const parsedUser = JSON.parse(storedUser) as Partial<CurrentUser>;
+
+    return {
+      name: parsedUser.name?.trim() || defaultUser.name,
+      role: parsedUser.role?.trim() || defaultUser.role,
+    };
+  } catch {
+    window.localStorage.removeItem(currentUserStorageKey);
+    return defaultUser;
+  }
+}
 
 function Header() {
+  const [user, setUser] = useState<CurrentUser>(defaultUser);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setUser(readCurrentUser()), 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
   return (
     <header className="fixed right-0 top-0 z-40 flex h-16 w-full min-w-0 items-center justify-between border-b border-sky-100 bg-white/85 px-4 shadow-sm backdrop-blur-md lg:w-[calc(100%-260px)] lg:px-6">
       <div className="flex items-center gap-3 lg:hidden">
@@ -56,14 +110,14 @@ function Header() {
         <div className="hidden h-8 w-px bg-sky-100 sm:block" />
         <div className="flex cursor-pointer items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-sky-100 text-xs font-bold text-sky-800 shadow-sm">
-            MS
+            {getInitials(user.name)}
           </div>
           <div className="hidden text-right lg:block">
             <p className="text-sm font-semibold leading-tight text-slate-900">
-              Marcus Sterling
+              {user.name}
             </p>
             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-              Senior Agent
+              {user.role}
             </p>
           </div>
         </div>

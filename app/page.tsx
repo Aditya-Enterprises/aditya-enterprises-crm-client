@@ -115,7 +115,9 @@ export default function LoginPage() {
             <span>{isLoading ? "Signing In..." : "Sign In"}</span>
             <Icon name="chevron_right" className="text-lg" />
           </button>
-          {error ? <p className="text-center text-sm text-red-600">{error}</p> : null}
+          {error ? (
+            <p className="text-center text-sm text-red-600">{error}</p>
+          ) : null}
         </form>
 
         <div className="border-t border-slate-100 pt-4 text-center">
@@ -123,9 +125,9 @@ export default function LoginPage() {
             Don&apos;t have an account?{" "}
             <a
               className="font-semibold text-[#006399] hover:underline"
-                href="#"
+              href="/register"
             >
-              Contact your admin
+              Register here
             </a>
           </p>
         </div>
@@ -136,7 +138,7 @@ export default function LoginPage() {
           {["Privacy Policy", "Terms of Service", "Support"].map((item) => (
             <a
               className="text-xs font-bold uppercase tracking-wider text-slate-500 transition-colors hover:text-slate-900"
-              href="/register"
+              href="#"
               key={item}
             >
               {item}

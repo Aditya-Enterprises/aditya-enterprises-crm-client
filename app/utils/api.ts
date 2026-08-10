@@ -1,5 +1,6 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5082/api/v1";
 const accessTokenKey = "aditya-crm-access-token";
+export const currentUserStorageKey = "aditya-crm-current-user";
 
 export function setAccessToken(token: string) {
   window.localStorage.setItem(accessTokenKey, token);
@@ -7,6 +8,10 @@ export function setAccessToken(token: string) {
 
 export function clearAccessToken() {
   window.localStorage.removeItem(accessTokenKey);
+}
+
+export function clearCurrentUser() {
+  window.localStorage.removeItem(currentUserStorageKey);
 }
 
 export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
