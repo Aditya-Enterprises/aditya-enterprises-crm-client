@@ -10,10 +10,6 @@ export function clearAccessToken() {
   window.localStorage.removeItem(accessTokenKey);
 }
 
-export function clearCurrentUser() {
-  window.localStorage.removeItem(currentUserStorageKey);
-}
-
 export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = typeof window === "undefined"
     ? null

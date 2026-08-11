@@ -2,6 +2,7 @@
 
 import React from "react";
 import { CrmShell } from "../components/crm-shell";
+import { CurrentUserProvider } from "../components/CurrentUserProvider";
 import { usePathname } from "next/navigation";
 
 function Layout({
@@ -11,7 +12,9 @@ function Layout({
 }>) {
   const pathname = usePathname();
   return (
-    <CrmShell activePath={pathname ?? "/crm/dashboard"}>{children}</CrmShell>
+    <CurrentUserProvider>
+      <CrmShell activePath={pathname ?? "/crm/dashboard"}>{children}</CrmShell>
+    </CurrentUserProvider>
   );
 }
 export default Layout;

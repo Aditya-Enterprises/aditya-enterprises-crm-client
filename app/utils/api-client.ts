@@ -1,4 +1,5 @@
-import { apiFetch, currentUserStorageKey, setAccessToken } from "./api";
+import { apiFetch, setAccessToken } from "./api";
+import { setCurrentUser } from "./current-user";
 import type {
   ApiDeal,
   ApiDealStageSummary,
@@ -20,13 +21,16 @@ export async function login(email: string, password: string) {
   });
 
   setAccessToken(result.accessToken);
-  window.localStorage.setItem(
-    currentUserStorageKey,
-    JSON.stringify({
-      name: result.userName ?? result.email ?? "User",
-      role: result.roles[0] ?? "Agent",
-    }),
-  );
+  const name = result.userName ?? result.email ?? "User";
+  const [firstName = "User", ...lastNameParts] = name.trim().split(/\s+/);
+  setCurrentUser({
+    id: result.userId,
+    firstName,
+    lastName: lastNameParts.join(" "),
+    name,
+    email: result.email,
+    role: result.roles[0] ?? "Agent",
+  });
   return result;
 }
 

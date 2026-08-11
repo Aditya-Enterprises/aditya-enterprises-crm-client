@@ -6,7 +6,8 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import Icon from "./Icon";
-import { clearAccessToken, clearCurrentUser } from "../utils/api";
+import { clearAccessToken } from "../utils/api";
+import { clearCurrentUser } from "../utils/current-user";
 
 const authStorageKey = "aditya-crm-authenticated";
 

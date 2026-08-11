@@ -1,17 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCurrentUser } from "./CurrentUserProvider";
 import Icon from "./Icon";
 import Logo from "../assets/Logo.png";
 import Image from "next/image";
-import { currentUserStorageKey } from "../utils/api";
-
-type CurrentUser = {
-  name: string;
-  role: string;
-};
-
-const defaultUser: CurrentUser = { name: "User", role: "Agent" };
 
 function getInitials(name: string) {
   return name
@@ -24,38 +16,8 @@ function getInitials(name: string) {
     .toUpperCase();
 }
 
-function readCurrentUser(): CurrentUser {
-  if (typeof window === "undefined") {
-    return defaultUser;
-  }
-
-  const storedUser = window.localStorage.getItem(currentUserStorageKey);
-
-  if (!storedUser) {
-    return defaultUser;
-  }
-
-  try {
-    const parsedUser = JSON.parse(storedUser) as Partial<CurrentUser>;
-
-    return {
-      name: parsedUser.name?.trim() || defaultUser.name,
-      role: parsedUser.role?.trim() || defaultUser.role,
-    };
-  } catch {
-    window.localStorage.removeItem(currentUserStorageKey);
-    return defaultUser;
-  }
-}
-
 function Header() {
-  const [user, setUser] = useState<CurrentUser>(defaultUser);
-
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => setUser(readCurrentUser()), 0);
-
-    return () => window.clearTimeout(timeoutId);
-  }, []);
+  const user = useCurrentUser();
 
   return (
     <header className="fixed right-0 top-0 z-40 flex h-16 w-full min-w-0 items-center justify-between border-b border-sky-100 bg-white/85 px-4 shadow-sm backdrop-blur-md lg:w-[calc(100%-260px)] lg:px-6">

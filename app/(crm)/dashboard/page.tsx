@@ -1,7 +1,7 @@
 "use client";
 
-import { CrmShell } from "../../components/crm-shell";
 import { useState } from "react";
+import { useCurrentUser } from "../../components/CurrentUserProvider";
 import RecentLeadsTable from "../../components/RecentLeadsTable";
 import MetricCard from "../../components/MetricCard";
 import SalesChart from "../../components/SalesChart";
@@ -11,6 +11,7 @@ import Icon from "@/app/components/Icon";
 
 export default function Home() {
   const [value, setValue] = useState(metrics[3].value);
+  const { firstName } = useCurrentUser();
   return (
     <div className="mx-auto max-w-360 px-4 py-6 pb-28 sm:px-6 lg:p-6">
       <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -19,15 +20,12 @@ export default function Home() {
             Performance Overview
           </h1>
           <p className="mt-1 text-sm text-slate-500 sm:text-[15px]">
-            Welcome back, Marcus. Here is what is happening with your pipeline
-            today.
+            Welcome back, {firstName}. Here is what is happening with your
+            pipeline today.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <button
-            className="flex items-center gap-2 rounded-lg border border-[#90e0ef] bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-sky-50"
-            onClick={() => setValue(Number(value) + 1)}
-          >
+          <button className="flex items-center gap-2 rounded-lg border border-[#90e0ef] bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-sky-50">
             <Icon name="calendar_month" className="text-lg" />
             <span>Add Task</span>
           </button>
