@@ -20,7 +20,9 @@ export default function EmployeesPage() {
       <h1 className="text-3xl font-bold text-slate-900">Employees</h1>
       <p className="mt-1 text-slate-500">Manage CRM team members and roles.</p>
 
-      {isLoading ? <p className="mt-8 text-slate-500">Loading employees...</p> : null}
+      {isLoading ? (
+        <p className="mt-8 text-slate-500">Loading employees...</p>
+      ) : null}
       {error ? <p className="mt-8 text-red-600">{error}</p> : null}
 
       {!isLoading && !error ? (
@@ -30,6 +32,7 @@ export default function EmployeesPage() {
               <tr>
                 <th className="px-4 py-3">Employee</th>
                 <th className="px-4 py-3">Email</th>
+                <th className="px-4 py-3">Phone</th>
                 <th className="px-4 py-3">Role</th>
                 <th className="px-4 py-3">Status</th>
               </tr>
@@ -37,11 +40,22 @@ export default function EmployeesPage() {
             <tbody>
               {employees.map((employee) => (
                 <tr className="border-t border-slate-100" key={employee.id}>
-                  <td className="px-4 py-4 font-medium text-slate-900">{employee.fullName}</td>
+                  <td className="px-4 py-4 font-medium text-slate-900">
+                    {employee.fullName}
+                  </td>
                   <td className="px-4 py-4 text-slate-600">{employee.email}</td>
+                  <td className="px-4 py-4 text-slate-600">
+                    {employee.phone ? employee.phone : "-"}
+                  </td>
                   <td className="px-4 py-4 text-slate-600">{employee.role}</td>
                   <td className="px-4 py-4">
-                    <span className={employee.isActive ? "text-emerald-600" : "text-slate-400"}>
+                    <span
+                      className={
+                        employee.isActive
+                          ? "text-emerald-600"
+                          : "text-slate-400"
+                      }
+                    >
                       {employee.isActive ? "Active" : "Inactive"}
                     </span>
                   </td>
