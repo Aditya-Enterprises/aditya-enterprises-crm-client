@@ -6,6 +6,7 @@ import RecentLeadsTable from "../../components/RecentLeadsTable";
 import MetricCard from "../../components/MetricCard";
 import SalesChart from "../../components/SalesChart";
 import TasksWidget from "../../components/TasksWidget";
+import { NewDealModal } from "@/app/components/NewDealModal";
 import { metrics } from "../../data/data";
 import { getDashboardSummary } from "../../utils/api-client";
 import type { DashboardSummary } from "../../utils/api-types";
@@ -21,6 +22,7 @@ const formatRevenue = (value: number) =>
 export default function Home() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isNewDealOpen, setIsNewDealOpen] = useState(false);
   const { firstName } = useCurrentUser();
 
   const loadSummary = useCallback(async () => {
@@ -61,6 +63,7 @@ export default function Home() {
         <div className="flex flex-wrap gap-2.5">
           <button
             type="button"
+            onClick={() => setIsNewDealOpen(true)}
             className="group inline-flex items-center gap-2.5 rounded-xl bg-[#2a2c94] px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-[#03045e]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0077b6] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6] focus-visible:ring-offset-2 active:translate-y-0"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-[#ade8f4] transition-colors group-hover:bg-white/20">
@@ -118,6 +121,10 @@ export default function Home() {
       </div>
 
       <RecentLeadsTable />
+      <NewDealModal
+        open={isNewDealOpen}
+        onClose={() => setIsNewDealOpen(false)}
+      />
     </div>
   );
 }

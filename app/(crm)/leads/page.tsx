@@ -16,9 +16,14 @@ export default function LeadsPage() {
             Manage and track potential client engagements across all properties.
           </p>
         </div>
-        <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0077b6] px-6 py-2.5 font-semibold text-white shadow-lg shadow-sky-200 transition-all hover:bg-[#48cae4] active:scale-95 sm:w-auto">
-          <Icon name="add" className="text-lg" />
-          <span>Add Lead</span>
+        <button
+          type="button"
+          className="group inline-flex items-center gap-2.5 rounded-xl border border-[#48cae4] bg-[#caf0f8] px-3 py-2 text-sm font-semibold text-[#03045e] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#00b4d8] hover:bg-[#ade8f4] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00b4d8] focus-visible:ring-offset-2 active:translate-y-0"
+        >
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/70 text-[#0077b6] transition-colors group-hover:bg-white">
+            <Icon name="group" className="text-base" />
+          </span>
+          <span>New Lead</span>
         </button>
       </div>
 

@@ -21,9 +21,14 @@ export default function TasksPage() {
             <Icon name="filter_list" className="text-lg" />
             <span>Filters</span>
           </button>
-          <button className="flex items-center gap-2 rounded-lg bg-[#0077b6] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-700/20 transition-all hover:bg-[#48cae4] active:scale-95">
-            <Icon name="add" className="text-lg" />
-            <span>New Task</span>
+          <button
+            type="button"
+            className="group inline-flex items-center gap-2.5 rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sky-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 active:translate-y-0"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-[#0077b6] transition-colors group-hover:bg-sky-100">
+              <Icon name="calendar_month" className="text-base" />
+            </span>
+            <span>Add Task</span>
           </button>
         </div>
       </div>

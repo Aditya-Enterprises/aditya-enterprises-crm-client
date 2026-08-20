@@ -97,6 +97,15 @@ export type ApiDeal = {
   createdAtUtc: string;
 };
 
+export type CreateDealRequest = {
+  leadId: string;
+  propertyId: string;
+  value: number;
+  stageId?: string;
+  ownerId?: string;
+  tag?: string;
+};
+
 export type ApiDealStageSummary = {
   id: string;
   name: string;

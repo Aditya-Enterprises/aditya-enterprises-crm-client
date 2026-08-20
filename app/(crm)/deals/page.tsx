@@ -1,9 +1,14 @@
+"use client";
+
 import Icon from "@/app/components/Icon";
+import { NewDealModal } from "@/app/components/NewDealModal";
 import { dealsColumns } from "@/app/data/data";
+import { useState } from "react";
 import { ViewToggle } from "../../components/ViewToggle";
 import { KanbanColumn } from "../../components/KanbanColumn";
 
 export default function DealsPage() {
+  const [isNewDealOpen, setIsNewDealOpen] = useState(false);
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col">
       <div className="flex flex-col gap-4 bg-white px-4 py-6 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
@@ -21,8 +26,14 @@ export default function DealsPage() {
             <Icon name="filter_list" className="text-lg" />
             <span>Filters</span>
           </button>
-          <button className="flex items-center gap-2 rounded-lg bg-[#0077b6] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-700/20 transition-all hover:bg-[#48cae4] active:scale-95">
-            <Icon name="add" className="text-lg" />
+          <button
+            type="button"
+            onClick={() => setIsNewDealOpen(true)}
+            className="group inline-flex items-center gap-2.5 rounded-xl bg-[#2a2c94] px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-[#03045e]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0077b6] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6] focus-visible:ring-offset-2 active:translate-y-0"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-[#ade8f4] transition-colors group-hover:bg-white/20">
+              <Icon name="trending_up" className="text-base" />
+            </span>
             <span>New Deal</span>
           </button>
         </div>
@@ -41,6 +52,7 @@ export default function DealsPage() {
           </button>
         </div>
       </div>
+      <NewDealModal open={isNewDealOpen} onClose={() => setIsNewDealOpen(false)} />
     </div>
   );
 }
