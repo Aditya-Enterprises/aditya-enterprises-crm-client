@@ -1,11 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-module.exports = {
-  allowedDevOrigins: ["192.168.1.15"],
+  // Add your LAN IP here if you access the dev server from another device on the same network.
+  // allowedDevOrigins: ["192.168.x.x"],
 };
 
 export default nextConfig;

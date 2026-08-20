@@ -6,10 +6,12 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import Icon from "./Icon";
-import { clearAccessToken } from "../utils/api";
+import {
+  authExpiredEvent,
+  clearAccessToken,
+  hasValidAccessToken,
+} from "../utils/api";
 import { clearCurrentUser } from "../utils/current-user";
-
-const authStorageKey = "aditya-crm-authenticated";
 
 export function CrmShell({
   activePath,
@@ -24,7 +26,8 @@ export function CrmShell({
   const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem(authStorageKey) !== "true") {
+    if (!hasValidAccessToken()) {
+      clearAccessToken();
       router.replace("/");
       return;
     }
@@ -34,16 +37,26 @@ export function CrmShell({
     return () => window.clearTimeout(timeoutId);
   }, [router]);
 
+  useEffect(() => {
+    function handleAuthExpired() {
+      clearAccessToken();
+      clearCurrentUser();
+      router.replace("/");
+    }
+
+    window.addEventListener(authExpiredEvent, handleAuthExpired);
+    return () => window.removeEventListener(authExpiredEvent, handleAuthExpired);
+  }, [router]);
+
   function handleLogout() {
-    window.localStorage.removeItem(authStorageKey);
     clearAccessToken();
     clearCurrentUser();
     router.replace("/");
   }
 
-  // if (!authChecked) {
-  //   return <div className="min-h-screen bg-[#fbf8ff]" />;
-  // }
+  if (!authChecked) {
+    return <div className="min-h-screen bg-[#fbf8ff]" />;
+  }
 
   return (
     <div className="min-h-screen bg-[#fbf8ff] text-slate-900">

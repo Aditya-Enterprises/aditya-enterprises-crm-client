@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Kwik Estate CRM",
-  description: "Aditya Enterprises CRM dashboard",
+  title: "Aditya Enterprises CRM",
+  description: "Professional Real Estate CRM for Aditya Enterprises",
 };
 
 export default function RootLayout({

@@ -6,8 +6,7 @@ import Image from "next/image";
 import Icon from "./components/Icon";
 import Logo from "./assets/Logo.png";
 import { login } from "./utils/api-client";
-
-const authStorageKey = "aditya-crm-authenticated";
+import { hasValidAccessToken } from "./utils/api";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,7 +16,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem(authStorageKey) === "true") {
+    if (hasValidAccessToken()) {
       router.replace("/dashboard");
     }
   }, [router]);
@@ -34,7 +33,6 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      window.localStorage.setItem(authStorageKey, "true");
       router.push("/dashboard");
     } catch {
       setError("Unable to sign in. Check your email and password.");
