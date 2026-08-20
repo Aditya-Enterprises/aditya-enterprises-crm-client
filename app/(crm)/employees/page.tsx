@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { generateAdminCode, getEmployees } from "../../utils/api-client";
-import { getCurrentUser } from "../../utils/current-user";
 import type { ApiEmployee } from "../../utils/api-types";
+import AccessDenied from "../../components/AccessDenied";
+import { useCurrentUser } from "../../components/CurrentUserProvider";
 
 export default function EmployeesPage() {
   const [employees, setEmployees] = useState<ApiEmployee[]>([]);
@@ -10,7 +11,8 @@ export default function EmployeesPage() {
   const [error, setError] = useState("");
   const [generatedCode, setGeneratedCode] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const isAdministrator = getCurrentUser().role === "Administrator";
+  const user = useCurrentUser();
+  const isAdministrator = user.role.toLowerCase() === "administrator";
 
   async function handleGenerateCode() {
     setIsGenerating(true);
@@ -25,11 +27,19 @@ export default function EmployeesPage() {
   }
 
   useEffect(() => {
+    if (!isAdministrator) {
+      return;
+    }
+
     getEmployees()
       .then((result) => setEmployees(result.items))
       .catch(() => setError("Unable to load employees."))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [isAdministrator]);
+
+  if (!isAdministrator) {
+    return <AccessDenied pageName="Employees page" />;
+  }
 
   return (
     <div className="mx-auto max-w-360 px-4 py-6 sm:px-6 lg:p-8">
