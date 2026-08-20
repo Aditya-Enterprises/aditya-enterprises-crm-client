@@ -50,17 +50,23 @@ function TasksWidget() {
 
   return (
     <section className="card-elevation flex flex-col rounded-xl border border-sky-100 bg-white">
-      <div className="border-b border-sky-50 p-5 sm:p-6">
+      <div className="border-b border-sky-50 p-4 sm:p-4">
         <h2 className="text-lg font-semibold text-slate-900">
           Today&apos;s Tasks
         </h2>
-        <p className="text-sm text-slate-500">Priority focus for {formatToday()}</p>
+        <p className="text-sm text-slate-500">
+          Priority focus for {formatToday()}
+        </p>
       </div>
-      <div className="flex-1 space-y-4 p-5 sm:p-6">
+      <div className="flex-1 space-y-4 p-4 mb-0 sm:py-0">
         {isLoading ? (
-          <p className="py-6 text-center text-sm text-slate-500">Loading tasks...</p>
+          <p className="py-6 text-center text-sm text-slate-500">
+            Loading tasks...
+          </p>
         ) : tasks.length === 0 ? (
-          <p className="py-6 text-center text-sm text-slate-500">No tasks found.</p>
+          <p className="py-6 text-center text-sm text-slate-500">
+            No tasks found.
+          </p>
         ) : (
           tasks.map((task, index) => {
             const isActive = task.status === "InProgress" || index === 0;

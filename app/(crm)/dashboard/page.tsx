@@ -58,14 +58,33 @@ export default function Home() {
             pipeline today.
           </p>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <button className="flex items-center gap-2 rounded-lg border border-[#90e0ef] bg-white px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-sky-50">
-            <Icon name="calendar_month" className="text-lg" />
-            <span>Add Task</span>
-          </button>
-          <button className="flex items-center gap-2 rounded-lg bg-[#0077b6] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-700/20 transition-all hover:bg-[#48cae4] active:scale-95">
-            <Icon name="add" className="text-lg" />
+        <div className="flex flex-wrap gap-2.5">
+          <button
+            type="button"
+            className="group inline-flex items-center gap-2.5 rounded-xl bg-[#2a2c94] px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-[#03045e]/20 transition-all hover:-translate-y-0.5 hover:bg-[#0077b6] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6] focus-visible:ring-offset-2 active:translate-y-0"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-[#ade8f4] transition-colors group-hover:bg-white/20">
+              <Icon name="trending_up" className="text-base" />
+            </span>
             <span>New Deal</span>
+          </button>
+          <button
+            type="button"
+            className="group inline-flex items-center gap-2.5 rounded-xl border border-[#48cae4] bg-[#caf0f8] px-3 py-2 text-sm font-semibold text-[#03045e] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#00b4d8] hover:bg-[#ade8f4] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00b4d8] focus-visible:ring-offset-2 active:translate-y-0"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/70 text-[#0077b6] transition-colors group-hover:bg-white">
+              <Icon name="group" className="text-base" />
+            </span>
+            <span>New Lead</span>
+          </button>
+          <button
+            type="button"
+            className="group inline-flex items-center gap-2.5 rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sky-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 active:translate-y-0"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-[#0077b6] transition-colors group-hover:bg-sky-100">
+              <Icon name="calendar_month" className="text-base" />
+            </span>
+            <span>Add Task</span>
           </button>
         </div>
       </div>
