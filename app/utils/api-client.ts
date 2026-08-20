@@ -10,6 +10,7 @@ import type {
   ApiTask,
   AdminCodeResponse,
   DashboardPipelineItem,
+  DashboardScheduleItem,
   DashboardSummary,
   LoginResponse,
   RegisterAgentRequest,
@@ -77,3 +78,6 @@ export const getDashboardSummary = () =>
 
 export const getDashboardPipeline = () =>
   apiFetch<DashboardPipelineItem[]>("/dashboard/pipeline");
+
+export const getTodaySchedule = () =>
+  apiFetch<DashboardScheduleItem[]>("/dashboard/today-schedule");

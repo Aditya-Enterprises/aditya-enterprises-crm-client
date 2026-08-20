@@ -131,3 +131,14 @@ export type DashboardPipelineItem = {
   dealCount: number;
   totalValue: number;
 };
+
+export type DashboardScheduleItem = {
+  id: string;
+  title: string;
+  contactName?: string;
+  dueAtUtc: string;
+  status: "Pending" | "InProgress" | "Completed" | "Cancelled";
+  priority: "Low" | "Medium" | "High";
+  taskType?: string;
+  assignedEmployeeName?: string;
+};
