@@ -7,6 +7,7 @@ import type {
   ApiLead,
   ApiPagedResult,
   ApiProperty,
+  ApiRecentLead,
   ApiTask,
   AdminCodeResponse,
   DashboardPipelineItem,
@@ -63,6 +64,9 @@ export const getProperties = (page = 1, pageSize = 20) =>
 
 export const getLeads = (page = 1, pageSize = 20) =>
   apiFetch<ApiPagedResult<ApiLead>>(`/leads?page=${page}&pageSize=${pageSize}`);
+
+export const getRecentLeads = (limit = 10) =>
+  apiFetch<ApiRecentLead[]>(`/dashboard/recent-leads?limit=${limit}`);
 
 export const getDeals = (page = 1, pageSize = 20) =>
   apiFetch<ApiPagedResult<ApiDeal>>(`/deals?page=${page}&pageSize=${pageSize}`);

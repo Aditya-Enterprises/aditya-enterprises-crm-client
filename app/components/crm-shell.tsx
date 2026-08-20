@@ -16,7 +16,7 @@ import { clearCurrentUser } from "../utils/current-user";
 export function CrmShell({
   activePath,
   children,
-  showFab = true,
+  showFab = false,
 }: {
   activePath: string;
   children: React.ReactNode;
@@ -45,7 +45,8 @@ export function CrmShell({
     }
 
     window.addEventListener(authExpiredEvent, handleAuthExpired);
-    return () => window.removeEventListener(authExpiredEvent, handleAuthExpired);
+    return () =>
+      window.removeEventListener(authExpiredEvent, handleAuthExpired);
   }, [router]);
 
   function handleLogout() {

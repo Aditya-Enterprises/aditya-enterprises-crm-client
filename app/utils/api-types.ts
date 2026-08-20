@@ -72,6 +72,16 @@ export type ApiLead = {
   createdAtUtc: string;
 };
 
+export type ApiRecentLead = {
+  id: string;
+  contactName: string;
+  intent?: string;
+  status: ApiLead["status"];
+  source?: string;
+  createdAtUtc: string;
+  assignedEmployeeName?: string;
+};
+
 export type ApiDeal = {
   id: string;
   client: string;

@@ -1,5 +1,5 @@
 import Icon from "@/app/components/Icon";
-import { leadsFilters, leadsData, leadsInsights } from "../../data/data";
+import { leadsFilters, leadsInsights } from "../../data/data";
 import { FilterPanel } from "../../components/FilterPanel";
 import { LeadsTable } from "../../components/LeadsTable";
 import { InsightCards } from "../../components/InsightCards";
@@ -23,7 +23,7 @@ export default function LeadsPage() {
       </div>
 
       <FilterPanel filters={leadsFilters} />
-      <LeadsTable leads={leadsData} />
+      <LeadsTable />
       <InsightCards insights={leadsInsights} />
     </div>
   );
