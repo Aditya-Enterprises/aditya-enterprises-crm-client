@@ -8,6 +8,7 @@ import type {
   ApiPagedResult,
   ApiProperty,
   ApiTask,
+  AdminCodeResponse,
   DashboardPipelineItem,
   DashboardSummary,
   LoginResponse,
@@ -45,6 +46,9 @@ export async function registerAgent(request: RegisterAgentRequest) {
     body: JSON.stringify(request),
   });
 }
+
+export const generateAdminCode = () =>
+  apiFetch<AdminCodeResponse>("/auth/admin-codes", { method: "POST" });
 
 export const getEmployees = (page = 1, pageSize = 20) =>
   apiFetch<ApiPagedResult<ApiEmployee>>(

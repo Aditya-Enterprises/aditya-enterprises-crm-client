@@ -3,6 +3,7 @@ import Logo from "../assets/Logo.png";
 import { navigationItems } from "../data/NavigationItems";
 import Link from "next/link";
 import Icon from "./Icon";
+import { useCurrentUser } from "./CurrentUserProvider";
 
 function Sidebar({
   activePath,
@@ -11,6 +12,7 @@ function Sidebar({
   activePath: string;
   onLogout: () => void;
 }) {
+  const user = useCurrentUser();
   return (
     <aside className="sidebar-shadow fixed left-0 top-0 z-50 hidden h-screen w-65 flex-col space-y-2 bg-slate-900 px-4 py-6 lg:flex">
       <div className="mb-8 flex items-center gap-3 px-4">
@@ -30,12 +32,14 @@ function Sidebar({
       <nav className="flex-1 space-y-1">
         {navigationItems.map((item) => {
           const active = activePath === item.href;
-
+          const isVisibileToRole = item.visibleToRole.includes(
+            user.role.toLowerCase(),
+          );
           return (
             <Link
               href={item.href}
               key={item.label}
-              className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm tracking-wide transition-all duration-200 ${
+              className={`${isVisibileToRole ? "flex" : "hidden"} items-center gap-3 rounded-lg px-4 py-3 text-sm tracking-wide transition-all duration-200 ${
                 active
                   ? "bg-sky-600 text-white shadow-lg shadow-sky-900/20"
                   : "text-slate-400 hover:bg-slate-800 hover:text-white"

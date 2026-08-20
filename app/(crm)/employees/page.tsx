@@ -1,12 +1,28 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getEmployees } from "../../utils/api-client";
+import { generateAdminCode, getEmployees } from "../../utils/api-client";
+import { getCurrentUser } from "../../utils/current-user";
 import type { ApiEmployee } from "../../utils/api-types";
 
 export default function EmployeesPage() {
   const [employees, setEmployees] = useState<ApiEmployee[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [generatedCode, setGeneratedCode] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const isAdministrator = getCurrentUser().role === "Administrator";
+
+  async function handleGenerateCode() {
+    setIsGenerating(true);
+    setError("");
+    try {
+      setGeneratedCode((await generateAdminCode()).code);
+    } catch {
+      setError("Unable to generate an admin code.");
+    } finally {
+      setIsGenerating(false);
+    }
+  }
 
   useEffect(() => {
     getEmployees()
@@ -18,7 +34,11 @@ export default function EmployeesPage() {
   return (
     <div className="mx-auto max-w-360 px-4 py-6 sm:px-6 lg:p-8">
       <h1 className="text-3xl font-bold text-slate-900">Employees</h1>
-      <p className="mt-1 text-slate-500">Manage CRM team members and roles.</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <p className="mt-1 text-slate-500">Manage CRM team members and roles.</p>
+        {isAdministrator ? <button className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60" disabled={isGenerating} onClick={handleGenerateCode} type="button">{isGenerating ? "Generating..." : "Generate admin code"}</button> : null}
+      </div>
+      {generatedCode ? <p className="mt-4 rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-800">New one-time code: <strong className="tracking-widest">{generatedCode}</strong>. Share it securely; it expires in 24 hours.</p> : null}
 
       {isLoading ? (
         <p className="mt-8 text-slate-500">Loading employees...</p>

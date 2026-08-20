@@ -22,7 +22,10 @@ export type RegisterAgentRequest = {
   password: string;
   confirmPassword: string;
   phone?: string;
+  adminCode: string;
 };
+
+export type AdminCodeResponse = { code: string; expiresAtUtc: string };
 
 export type EmployeeRole = "Agent" | "Manager" | "Administrator";
 

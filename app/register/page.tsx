@@ -17,6 +17,7 @@ export default function RegisterPage() {
     phone: "",
     password: "",
     confirmPassword: "",
+    adminCode: "",
   });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -38,10 +39,18 @@ export default function RegisterPage() {
     try {
       await registerAgent(form);
       router.push("/?registered=true");
-    } catch {
-      setError(
-        "Unable to create your account. Check your details and try again.",
-      );
+    } catch (caught) {
+      try {
+        const message = JSON.parse((caught as Error).message).message;
+        setError(
+          message ||
+            "Unable to create your account. Check your details and try again.",
+        );
+      } catch {
+        setError(
+          "Unable to create your account. Check your details and try again.",
+        );
+      }
     } finally {
       setIsLoading(false);
     }
@@ -54,6 +63,7 @@ export default function RegisterPage() {
           <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg">
             <Image src={Logo} alt="Logo" />
           </div>
+
           <h1 className="text-2xl font-semibold leading-tight text-slate-900">
             Create agent account
           </h1>
@@ -63,6 +73,25 @@ export default function RegisterPage() {
         </div>
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <label className="flex flex-col gap-1.5">
+            <span className="px-1 text-xs font-bold uppercase tracking-wider text-slate-600">
+              Admin code
+            </span>
+            <input
+              className="w-full rounded-lg border border-[#90e0ef] bg-white px-4 py-3 text-sm uppercase tracking-[0.2em] outline-none transition-all focus:border-[#0077b6] focus:ring-2 focus:ring-[#0077b6]/20"
+              maxLength={9}
+              onChange={(event) =>
+                updateField("adminCode", event.target.value.toUpperCase())
+              }
+              placeholder="A14R-CF0D"
+              pattern="[A-Z0-9]{4}-[A-Z0-9]{4}"
+              required
+              value={form.adminCode}
+            />
+            <span className="px-1 text-xs text-slate-500">
+              Enter the one-time code provided by an administrator.
+            </span>
+          </label>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {(["firstName", "lastName"] as const).map((field) => (
               <label className="flex flex-col gap-1.5" key={field}>
