@@ -1,17 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useCurrentUser } from "../../components/CurrentUserProvider";
 import RecentLeadsTable from "../../components/RecentLeadsTable";
 import MetricCard from "../../components/MetricCard";
 import SalesChart from "../../components/SalesChart";
 import TasksWidget from "../../components/TasksWidget";
 import { metrics } from "../../data/data";
+import { getDashboardSummary } from "../../utils/api-client";
+import type { DashboardSummary } from "../../utils/api-types";
 import Icon from "@/app/components/Icon";
 
+const formatRevenue = (value: number) =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(value);
+
 export default function Home() {
-  const [value, setValue] = useState(metrics[3].value);
+  const [summary, setSummary] = useState<DashboardSummary | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { firstName } = useCurrentUser();
+
+  const loadSummary = useCallback(async () => {
+    try {
+      setSummary(await getDashboardSummary());
+    } catch {
+      setError("Unable to load dashboard metrics.");
+    }
+  }, []);
+
+  useEffect(() => {
+    void getDashboardSummary()
+      .then(setSummary)
+      .catch(() => setError("Unable to load dashboard metrics."));
+  }, []);
+
+  const metricValues = summary
+    ? [
+        summary.totalLeads.toLocaleString("en-IN"),
+        summary.activeDeals.toLocaleString("en-IN"),
+        formatRevenue(summary.totalRevenue),
+        summary.pendingTasks.toLocaleString("en-IN"),
+      ]
+    : null;
+
   return (
     <div className="mx-auto max-w-360 px-4 py-6 pb-28 sm:px-6 lg:p-6">
       <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -37,10 +71,27 @@ export default function Home() {
       </div>
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {metrics.map((metric) => (
-          <MetricCard key={metric.label} metric={metric} value={value} />
+        {metrics.map((metric, index) => (
+          <MetricCard
+            key={metric.label}
+            metric={metric}
+            value={metricValues?.[index] ?? "—"}
+          />
         ))}
       </div>
+
+      {error && (
+        <div className="mb-6 flex items-center justify-between gap-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <span>{error}</span>
+          <button
+            type="button"
+            onClick={() => void loadSummary()}
+            className="font-semibold underline underline-offset-2"
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
       <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <SalesChart />
