@@ -7,6 +7,7 @@ import MetricCard from "../../components/MetricCard";
 import SalesChart from "../../components/SalesChart";
 import TasksWidget from "../../components/TasksWidget";
 import { NewDealModal } from "@/app/components/NewDealModal";
+import { NewLeadModal } from "@/app/components/NewLeadModal";
 import { metrics } from "../../data/data";
 import { getDashboardSummary } from "../../utils/api-client";
 import type { DashboardSummary } from "../../utils/api-types";
@@ -23,6 +24,7 @@ export default function Home() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isNewDealOpen, setIsNewDealOpen] = useState(false);
+  const [isNewLeadOpen, setIsNewLeadOpen] = useState(false);
   const { firstName } = useCurrentUser();
 
   const loadSummary = useCallback(async () => {
@@ -73,6 +75,7 @@ export default function Home() {
           </button>
           <button
             type="button"
+            onClick={() => setIsNewLeadOpen(true)}
             className="group inline-flex items-center gap-2.5 rounded-xl border border-[#48cae4] bg-[#caf0f8] px-3 py-2 text-sm font-semibold text-[#03045e] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#00b4d8] hover:bg-[#ade8f4] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00b4d8] focus-visible:ring-offset-2 active:translate-y-0"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/70 text-[#0077b6] transition-colors group-hover:bg-white">
@@ -125,6 +128,7 @@ export default function Home() {
         open={isNewDealOpen}
         onClose={() => setIsNewDealOpen(false)}
       />
+      <NewLeadModal open={isNewLeadOpen} onClose={() => setIsNewLeadOpen(false)} onCreated={() => void loadSummary()} />
     </div>
   );
 }

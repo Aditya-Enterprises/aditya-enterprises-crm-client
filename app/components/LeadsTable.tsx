@@ -22,7 +22,7 @@ function addedDate(value: string) {
   return `Added ${new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(new Date(value))}`;
 }
 
-export function LeadsTable() {
+export function LeadsTable({ refreshKey = 0 }: { refreshKey?: number }) {
   const [leads, setLeads] = useState<ApiLead[]>([]);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
@@ -43,7 +43,7 @@ export function LeadsTable() {
       .catch(() => mounted && setError("Unable to load leads."))
       .finally(() => mounted && setIsLoading(false));
     return () => { mounted = false; };
-  }, [page]);
+  }, [page, refreshKey]);
 
   if (isLoading) return <p className="rounded-xl border border-[#90e0ef] bg-white p-8 text-slate-500">Loading leads...</p>;
   if (error) return <p className="rounded-xl border border-rose-200 bg-rose-50 p-8 text-rose-700">{error}</p>;

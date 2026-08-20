@@ -4,14 +4,6 @@ import { DealColumn } from "../utils/types";
 import { ScheduleItem, Task, SummaryCard } from "../utils/types";
 export const metrics = [
   {
-    label: "TOTAL LEADS",
-    value: "1,284",
-    icon: "groups",
-    badge: "+12.5%",
-    badgeClass: "bg-green-50 text-green-600",
-    iconClass: "bg-sky-50 text-[#0077b6]",
-  },
-  {
     label: "ACTIVE DEALS",
     value: "45",
     icon: "handshake",
@@ -20,12 +12,12 @@ export const metrics = [
     iconClass: "bg-blue-50 text-[#006399]",
   },
   {
-    label: "TOTAL REVENUE",
-    value: "Rs 2.4Cr",
-    icon: "payments",
-    badge: "YTD",
-    badgeClass: "bg-slate-100 text-slate-500",
-    iconClass: "bg-indigo-50 text-[#070a61]",
+    label: "TOTAL LEADS",
+    value: "1,284",
+    icon: "groups",
+    badge: "+12.5%",
+    badgeClass: "bg-green-50 text-green-600",
+    iconClass: "bg-sky-50 text-[#0077b6]",
   },
   {
     label: "PENDING TASKS",
@@ -34,6 +26,14 @@ export const metrics = [
     badge: "Due Today",
     badgeClass: "bg-amber-50 text-amber-600",
     iconClass: "bg-amber-50 text-amber-600",
+  },
+  {
+    label: "TOTAL REVENUE",
+    value: "Rs 2.4Cr",
+    icon: "payments",
+    badge: "YTD",
+    badgeClass: "bg-slate-100 text-slate-500",
+    iconClass: "bg-indigo-50 text-[#070a61]",
   },
 ];
 

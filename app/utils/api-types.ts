@@ -72,6 +72,17 @@ export type ApiLead = {
   createdAtUtc: string;
 };
 
+export type CreateLeadRequest = {
+  contactName: string;
+  email: string;
+  phone?: string;
+  intent?: string;
+  expectedValue?: number;
+  source?: string;
+  propertyId?: string;
+  assignedEmployeeId?: string;
+};
+
 export type ApiRecentLead = {
   id: string;
   contactName: string;

@@ -10,6 +10,7 @@ import type {
   ApiRecentLead,
   ApiTask,
   CreateDealRequest,
+  CreateLeadRequest,
   AdminCodeResponse,
   DashboardPipelineItem,
   DashboardScheduleItem,
@@ -68,6 +69,9 @@ export const getLeads = (page = 1, pageSize = 20) =>
 
 export const getRecentLeads = (limit = 10) =>
   apiFetch<ApiRecentLead[]>(`/dashboard/recent-leads?limit=${limit}`);
+
+export const createLead = (request: CreateLeadRequest) =>
+  apiFetch<ApiLead>("/leads", { method: "POST", body: JSON.stringify(request) });
 
 export const getDeals = (page = 1, pageSize = 20) =>
   apiFetch<ApiPagedResult<ApiDeal>>(`/deals?page=${page}&pageSize=${pageSize}`);
