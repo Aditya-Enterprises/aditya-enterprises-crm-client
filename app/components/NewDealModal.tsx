@@ -17,11 +17,11 @@ import type {
   ApiProperty,
 } from "../utils/api-types";
 
-type Props = { open: boolean; onClose: () => void };
+type Props = { open: boolean; onClose: () => void; onCreated?: () => void };
 const inputClass =
   "w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-800 outline-none focus:border-[#0077b6] focus:ring-4 focus:ring-sky-100";
 
-export function NewDealModal({ open, onClose }: Props) {
+export function NewDealModal({ open, onClose, onCreated }: Props) {
   const [leads, setLeads] = useState<ApiLead[]>([]),
     [properties, setProperties] = useState<ApiProperty[]>([]),
     [employees, setEmployees] = useState<ApiEmployee[]>([]),
@@ -101,6 +101,7 @@ export function NewDealModal({ open, onClose }: Props) {
         ownerId: form.ownerId || undefined,
         tag: form.tag || undefined,
       });
+      onCreated?.();
       onClose();
     } catch (cause) {
       setError(
