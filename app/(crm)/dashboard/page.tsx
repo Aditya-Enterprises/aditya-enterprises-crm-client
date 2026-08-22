@@ -8,6 +8,7 @@ import SalesChart from "../../components/SalesChart";
 import TasksWidget from "../../components/TasksWidget";
 import { NewDealModal } from "@/app/components/NewDealModal";
 import { NewLeadModal } from "@/app/components/NewLeadModal";
+import { NewTaskModal } from "@/app/components/NewTaskModal";
 import { metrics } from "../../data/data";
 import { getDashboardSummary } from "../../utils/api-client";
 import type { DashboardSummary } from "../../utils/api-types";
@@ -25,6 +26,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [isNewDealOpen, setIsNewDealOpen] = useState(false);
   const [isNewLeadOpen, setIsNewLeadOpen] = useState(false);
+  const [isNewTaskOpen, setIsNewTaskOpen] = useState(false);
   const { firstName } = useCurrentUser();
 
   const loadSummary = useCallback(async () => {
@@ -43,10 +45,10 @@ export default function Home() {
 
   const metricValues = summary
     ? [
-        summary.totalLeads.toLocaleString("en-IN"),
         summary.activeDeals.toLocaleString("en-IN"),
-        formatRevenue(summary.totalRevenue),
+        summary.totalLeads.toLocaleString("en-IN"),
         summary.pendingTasks.toLocaleString("en-IN"),
+        formatRevenue(summary.totalRevenue),
       ]
     : null;
 
@@ -85,6 +87,7 @@ export default function Home() {
           </button>
           <button
             type="button"
+            onClick={() => setIsNewTaskOpen(true)}
             className="group inline-flex items-center gap-2.5 rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sky-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 active:translate-y-0"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-[#0077b6] transition-colors group-hover:bg-sky-100">
@@ -128,7 +131,16 @@ export default function Home() {
         open={isNewDealOpen}
         onClose={() => setIsNewDealOpen(false)}
       />
-      <NewLeadModal open={isNewLeadOpen} onClose={() => setIsNewLeadOpen(false)} onCreated={() => void loadSummary()} />
+      <NewLeadModal
+        open={isNewLeadOpen}
+        onClose={() => setIsNewLeadOpen(false)}
+        onCreated={() => void loadSummary()}
+      />
+      <NewTaskModal
+        open={isNewTaskOpen}
+        onClose={() => setIsNewTaskOpen(false)}
+        onCreated={() => void loadSummary()}
+      />
     </div>
   );
 }

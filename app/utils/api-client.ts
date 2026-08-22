@@ -11,6 +11,7 @@ import type {
   ApiTask,
   CreateDealRequest,
   CreateLeadRequest,
+  CreateTaskRequest,
   AdminCodeResponse,
   DashboardPipelineItem,
   DashboardScheduleItem,
@@ -87,6 +88,9 @@ export const getDealStages = () =>
 
 export const getTasks = (page = 1, pageSize = 20) =>
   apiFetch<ApiPagedResult<ApiTask>>(`/tasks?page=${page}&pageSize=${pageSize}`);
+
+export const createTask = (request: CreateTaskRequest) =>
+  apiFetch<ApiTask>("/tasks", { method: "POST", body: JSON.stringify(request) });
 
 export const getDashboardSummary = () =>
   apiFetch<DashboardSummary>("/dashboard/summary");

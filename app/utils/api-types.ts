@@ -144,6 +144,19 @@ export type ApiTask = {
   completedAtUtc?: string;
 };
 
+export type CreateTaskRequest = {
+  title: string;
+  description?: string;
+  contactName?: string;
+  dueAtUtc: string;
+  priority: ApiTask["priority"];
+  taskType?: string;
+  assignedEmployeeId?: string;
+  leadId?: string;
+  dealId?: string;
+  propertyId?: string;
+};
+
 export type DashboardSummary = {
   totalLeads: number;
   activeLeads: number;
