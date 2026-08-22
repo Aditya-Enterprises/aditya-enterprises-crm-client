@@ -121,12 +121,12 @@ export default function Home() {
         </div>
       )}
 
-      <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <RecentLeadsTable />
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <SalesChart />
         <TasksWidget />
       </div>
 
-      <RecentLeadsTable />
       <NewDealModal
         open={isNewDealOpen}
         onClose={() => setIsNewDealOpen(false)}
